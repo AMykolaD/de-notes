@@ -32,7 +32,6 @@ function App() {
       onSuccess: async () => {
         const identity = authClient.getIdentity();
         setPrincipal(identity.getPrincipal().toText());
-        console.log(canisterId);
         const newActor = createActor(canisterId, {
           agentOptions: {identity}
         });

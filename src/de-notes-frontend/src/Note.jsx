@@ -27,6 +27,11 @@ function Note({ note, timestamp, pinned, actor, fetchNotes }) {
         fetchNotes();
     };
 
+    const editNote = async () => {
+        setIsEditing(true);
+        setEditedNote(note);
+    }
+
     return (
         <div className={pinned ? "pinned" : "unpinned"}>
             <h3 className="noteDate">{timestampToDate(timestamp)}</h3>
@@ -37,13 +42,13 @@ function Note({ note, timestamp, pinned, actor, fetchNotes }) {
                     onChange={(e) => setEditedNote(e.target.value)} 
                 />
             ) : (
-                <p className="noteLine" onDoubleClick={() => setIsEditing(true)}>{note}</p>
+                <p className="noteLine" onDoubleClick={editNote}>{note}</p>
             )}
             <div className="manageNoteButtons">
                 {isEditing ? (
                     <button onClick={saveNote}>Save</button> 
                 ) : (
-                    <button onClick={() => setIsEditing(true)}>Edit</button> 
+                    <button onClick={editNote}>Edit</button> 
                 )}
                 <button onClick={pinNote}>{pinned ? "Unpin" : "Pin"}</button>
                 <button onClick={deleteNote}>Delete</button>
