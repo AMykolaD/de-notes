@@ -1,0 +1,12 @@
+type Note = record {
+    timestamp: nat64;
+    content: text;
+    pinned: bool;
+};
+
+service : {
+    add_note: (text) -> (nat64);
+    get_notes: () -> (vec Note) query;
+    edit_note: (nat64, text, bool) -> (bool);
+    delete_note: (nat64) -> (bool);
+}

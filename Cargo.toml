@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/de-notes-backend"
+]
+resolver = "2"
