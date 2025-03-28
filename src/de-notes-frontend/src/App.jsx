@@ -28,9 +28,11 @@ function App() {
   const login = async () => {
     const authClient = await AuthClient.create();
     await authClient.login({
+      identityProvider: "https://identity.ic0.app",
       onSuccess: async () => {
         const identity = authClient.getIdentity();
         setPrincipal(identity.getPrincipal().toText());
+        console.log(canisterId);
         const newActor = createActor(canisterId, {
           agentOptions: {identity}
         });
